@@ -1,0 +1,169 @@
+<!-원본 : https://codepen.io/SeanNorton/pen/LWBXQL->
+<! DOCTYPE html >
+< html  lang = " ko " >
+< 머리 >
+    < 메타  문자 세트 = " UTF-8 " >
+    < 메타  이름 = " 뷰포트 " content = " width = device-width, initial-scale = 1.0 " >
+    < 제목 > 문서 </ 제목 >
+
+    < 스타일 >
+
+        / * CSS 재설정 * /
+
+body {
+    배경색 : # ffe2af;
+    줄 높이 : 1.6 ;
+
+}
+
+h1 {
+    margin-top : 0 ;
+}
+
+
+/ * CSS 시작 * /
+
+. full-table {
+    디스플레이 : 테이블;
+    높이 : 100 % ;
+    너비 : 100 % ;
+}
+
+. table-cell {
+    디스플레이 : 테이블 셀;
+    수직 정렬 : 중간;
+    텍스트 정렬 : 가운데;
+}
+
+. 카드 {
+    패딩 : 10 픽셀  25 픽셀  10 픽셀  25 픽셀 ;
+    border-radius : 10 px ;
+    배경 : # 009688 ;
+    색상 : # fff ;
+    디스플레이 : 인라인 블록;
+    상자 그림자 : 2 px  2 px  1 px  0 px  # 295C7B ;
+}
+
+. 카드 : hover {
+    여백 - 가기 : 2 픽셀 ;
+    상자 그림자 : 없음;
+}
+
+. 시계 {
+    디스플레이 : 인라인 블록;
+    font-family : 'Roboto' , sans-serif;
+    글꼴 두께 : 굵게;
+    글꼴 크기 : 1.2 em ;
+    / * padding-left : 20px; * /
+}
+
+. 시간 {
+    디스플레이 : 인라인 블록;
+    최소 폭 : 37 픽셀 ;
+}
+
+. 콜론 {
+    글꼴 크기 : 1.1 em ;
+    디스플레이 : 인라인 블록;
+}
+
+. date {
+    디스플레이 : 블록;
+    최소 너비 : 162 픽셀 ;
+    / * padding-right : 30px; * /
+    / * 오른쪽 테두리 : 2px 단색 # 295C7B; * /
+    font-family : 'Roboto' , sans-serif;
+    글꼴 크기 : 1.2 em ;
+}
+. 인사 {
+    
+    최소 너비 : 162 픽셀 ;
+    / * padding-right : 30px; * /
+    font-family : 'Roboto' , sans-serif;
+    글꼴 크기 : 1.2 em ;
+}
+
+    </ 스타일 >
+</ 머리 >
+< 본체 >
+    < 링크  HREF = " https://fonts.googleapis.com/css?family=Lobster|Roboto:400,700 " REL = " 스타일 " >
+
+< div  class = " 전체 테이블 " >
+  < div  클래스 = " 테이블 셀 " >
+    
+    < div  class = " 카드 " >
+        < div  class = " 인사 " id = " 인사 " > </ div >
+      < div  class = " date " id = " date " > </ div >
+      < div  class = " 시계 " >
+        < div  class = " time " id = " hour " > </ div >
+        < div  클래스 = " 콜론 " > : </ div >
+        < div  class = " 시간 " id = " min " > </ div >
+        < div  클래스 = " 콜론 " > : </ div >
+        < div  class = " 시간 " id = " sec " > </ div >
+      </ div >
+    </ div >
+    
+  </ div >
+</ div >
+
+< 스크립트 >
+    기능  날짜 ( )  {
+var  today  =  new  Date ( ) ;
+문서 . getElementById ( 'date' ) . innerHTML  =  오늘 . toDateString ( ) ;
+}
+
+
+기능  시계 ( )  {
+var  today  =  new  Date ( ) ;
+var  hour  =  0 ( twelveHour ( 오늘 . getHours ( ) ) ) ;
+var  minutes  =  0 ( 오늘 . getMinutes ( ) ) ;
+var  seconds  =  0 ( 오늘 . getSeconds ( ) ) ;
+if ( twelveHour ( 오늘 . getHours ( ) )  > 12 ) {
+    초 + = "pm"
+}
+else {
+    초 + = "오전"
+}
+시간  =  오늘 . getHours ( ) ;
+if  ( 시간  <  12 )
+        greet  =  '좋은 아침' ;
+    그렇지  않으면  ( 시간 > = 12  &&  시간 <= 17 )
+        greet  =  '좋은 오후' ;
+    그렇지  않으면  ( 시간 > = 17  &&  시간 <= 24 )
+        greet  =  '좋은 저녁' ;
+// console.log (today.toLocaleTimeString ());
+문서 . getElementById ( 'greet' ) . innerHTML  =  인사 ;
+문서 . getElementById ( '시간' ) . innerHTML  =  시간 ;
+문서 . getElementById ( 'min' ) . innerHTML  =  분 ;
+문서 . getElementById ( 'sec' ) . innerHTML  =  초 ;
+}
+
+function  twelveHour ( 시간 )  {
+if  ( 시간  >  12 )  {
+    반환  시간  -=  12 
+}  else  if  ( 시간  ===  0 )  {
+    반환  시간  =  12 ;
+}  else  {
+    반환  시간
+}
+}
+// 한 자리 숫자 앞에 0을 추가합니다.
+function  zeros ( num )  {
+if  ( num  <  10 )  {
+    숫자  =  '0'  +  숫자
+} ;
+return  num ;
+}
+
+function  dateTime ( )  {
+날짜 ( ) ;
+시계 ( ) ;
+setTimeout ( dateTime ,  500 ) ;
+}
+
+dateTime ( )
+// 끝
+</ 스크립트 >
+
+</ 본문 >
+</ html >
